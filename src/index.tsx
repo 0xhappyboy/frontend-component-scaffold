@@ -1,2 +1,2 @@
-export { DemoComponent } from './components/MultiPanel';
-export type { DemoComponentProps } from './components/MultiPanel';
+export { DemoComponent } from './components/Demo';
+export type { DemoComponentProps } from './components/Demo';
