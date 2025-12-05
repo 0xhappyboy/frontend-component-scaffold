@@ -1,65 +1,73 @@
 {
-  "name": "demo",
-  "version": "1.0.0",
+  "name": "",
+  "version": "",
   "description": "",
-  "license": "",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
-  "files": [
-    "dist"
-  ],
   "keywords": [
-    "multi panel",
-    "panel split"
   ],
   "author": "happyboy",
-  "type": "module",
-  "microbundle": {
-    "entries": [
-      "src/index.ts"
-    ],
-    "peerDependencies": [
-      "react",
-      "react-dom"
-    ],
-    "externals": [
-      "react",
-      "react-dom",
-      "react/jsx-runtime"
-    ],
-    "generateTypes": true,
-    "css": false
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "microbundle-crl --no-compress --format modern,cjs"
-  },
-  "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.28.5",
-    "@babel/preset-react": "^7.28.5",
-    "@babel/preset-typescript": "^7.28.5",
-    "@rollup/plugin-babel": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^16.0.3",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "rollup": "^4.53.3",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "typescript": "^5.9.3",
-    "microbundle-crl": "^0.13.11"
-  },
+  "license": "",
+  "repository": "",
   "bugs": {
     "url": ""
   },
-  "homepage": ""
+  "homepage": "",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "source": "src/index.tsx",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "clean": "rm -rf dist node_modules/.cache .tsbuildinfo",
+    "build": "vite build",
+    "build:fast": "vite build --mode development",
+    "build:types": "tsc --emitDeclarationOnly --outDir dist",
+    "start": "vite build --watch",
+    "dev": "vite",
+    "prepare": "npm run build",
+    "test": "run-s test:unit test:lint",
+    "test:build": "vite build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "lightweight-charts": "^5.0.9",
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "@vitejs/plugin-react": "^5.1.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react": "^7.37.4",
+    "gh-pages": "^6.3.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.7.3",
+    "vite": "^7.2.6",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "files": [
+    "dist"
+  ]
 }
